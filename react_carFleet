@@ -1,0 +1,112 @@
+/* global ReactDOM*/
+/*global React*/
+
+const rootEl = document.getElementById('root'),
+start = 'Running',
+stop = 'Stopped';
+
+let count = 0;  
+const  listOfCars = [];
+class AddCar extends React.Component{
+    constructor(props){
+       super(props)
+       this.state={
+           listOfCars:props.carsList,
+       }
+    }
+    createCar=()=>{
+        count++;
+        this.setState({
+                listOfCars :listOfCars.push(<li key={Math.random()}><CarFleet/></li>),
+        })
+    }
+    
+    render(){
+        return(<div>
+                    <div className="flex-end">
+                        <button className="add-car-button" onClick={this.createCar}>Add Car</button>
+                    </div>
+                    
+                    <ul>{listOfCars}</ul>
+                </div>)
+            
+    }
+}
+class CarFleet extends React.Component{
+    constructor(props){
+        super(props)
+        this.state={
+            status:'Stopped',//Running//with speed
+            enigne:'Start',//Stop
+        }
+    }
+    startAndStop=()=>{
+        
+    }
+    closeTheCar=()=>{
+        
+    }
+    accelerate=()=>{
+        
+    }
+    decelerate=()=>{
+        
+    }
+    render(){
+        return(
+            <div>
+                <div>Car no:{count}</div>
+                    <div className="car-block">
+                        <div>
+                        <button className="start" onClick={this.startAndStop}>{this.state.enigne}</button>
+                        <button className="close" onClick={this.closeTheCar}>{this.state.enigne}</button>
+                        </div>
+                        
+                        <div className="car-running-status">Status: {this.state.status}</div>
+                        
+                        <div className='third-block'>
+                            <button className="acceleration"onClick={this.accelerate}>Acclerate</button>
+                            <button className="deceleration"onClick={this.decelerate}>Decelerate</button>
+                        </div>
+                    </div>
+            </div>)
+    }
+ }
+// create a car  with class names and with buttons
+
+
+ReactDOM.render(<div>{<AddCar carsList={listOfCars}/>}</div>,rootEl);
+/*   constructor(props){
+        super(props)
+        this.state={
+            listOfCars :props.list
+        };
+    }
+    addNewCar=()=>{
+        console.log(1);
+        let newCar =<li>1</li>;
+        console.log(this.state.listOfCars);
+        
+        this.setState(()=>{
+            listOfCars.push(2);
+        });
+        
+        
+    }
+    render(){
+        console.log(22);
+        return(  <div>
+    <button onClick ={this.addNewCar}>Add car</button>
+   <ul>
+   {listOfCars}</ul>
+    </div>)}
+*/
+// // create 4 buttons
+// add car
+// start/stop
+// accelerate
+// decelerate
+
+// //create stats
+// car No
+// Status:
